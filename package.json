@@ -1,0 +1,72 @@
+{
+  "name": "vscode-lowercase",
+  "displayName": "lowercase",
+  "description": "Convert selection to lowercase",
+  "version": "0.0.1",
+  "author": "Rui Quelhas <rfpquelhas@gmail.com> (https://www.ruiquelhas.xyz)",
+  "publisher": "ruiquelhas",
+  "engines": {
+    "node": "^6.3.0",
+    "vscode": "^1.7.1"
+  },
+  "categories": [
+    "Formatters",
+    "Keymaps",
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:lowercase.toLowerCase"
+  ],
+  "main": "./lib/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "lowercase.toLowerCase",
+        "title": "Convert selection to lowercase"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "lowercase.toLowerCase",
+        "key": "alt+shift+l",
+        "mac": "alt+shift+l"
+      }
+    ]
+  },
+  "scripts": {
+    "coverage:check": "npm run coverage:instrument && ISTANBUL_REPORT_DIR=coverage ISTANBUL_REPORTERS='text-summary,html,lcov' npm run coverage:run",
+    "coverage:instrument": "istanbul instrument lib/ -o instrumented/",
+    "coverage:report": "npm run coverage:check && cat coverage/lcov.info | codecov",
+    "coverage:run": "NODE_PATH=instrumented NODE_ENV=coverage node ./node_modules/vscode/bin/test && rimraf instrumented",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "NODE_PATH=lib node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "codecov.io": "^0.1.6",
+    "fs-promise": "^1.0.0",
+    "istanbul": "^0.4.5",
+    "lodash.isequal": "^4.4.0",
+    "mocha": "^3.1.2",
+    "mocha-istanbul": "^0.3.0",
+    "proxyquire": "^1.7.10",
+    "rimraf": "^2.5.4",
+    "standard": "^8.5.0",
+    "testdouble": "^1.9.0",
+    "vscode": "^1.0.3"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ruiquelhas/vscode-lowercase/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruiquelhas/vscode-lowercase.git"
+  },
+  "homepage": "https://github.com/ruiquelhas/vscode-lowercase#readme",
+  "keywords": [
+    "case",
+    "extension",
+    "lowercase",
+    "vscode"
+  ]
+}
